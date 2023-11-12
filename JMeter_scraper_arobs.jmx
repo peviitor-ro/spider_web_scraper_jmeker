@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="scraper" enabled="true">
       <stringProp name="TestPlan.comments">please update company name (code for company without any space)</stringProp>
@@ -407,7 +407,9 @@ vars.put(&quot;count&quot;,&quot;0&quot;);</stringProp>
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
-                <stringProp name="script">var k = vars.get(&quot;k&quot;);
+                <stringProp name="script">import groovy.json.JsonBuilder
+def jsonObject = [:]
+var k = vars.get(&quot;k&quot;);
 var title = vars.get(&quot;title_&quot;+k).split(&quot; - &quot;)[1];
 var link  = vars.get(&quot;link_&quot;+k);
 var locations =  vars.get(&quot;location_&quot;+k);
@@ -439,21 +441,27 @@ for( country_code in countries)
 			log.warn(&quot;Unkown country: &quot;+country_code)
 			continue
 		}
-	log.info(country)
+	
+		
 	for (loc in splitted){
 		var locsplit=loc.split(&quot;-&quot;);
 		if(locsplit[0]==country_code)
 			if(locsplit.length == 1){
-				city &lt;&lt; (&quot;\&quot;Remote\&quot;&quot;);
+				city &lt;&lt; (&quot;Remote&quot;);
+				
 			}
 			else
-				city &lt;&lt; (&quot;\&quot;&quot; + locsplit[1] + &quot;\&quot;&quot;);
-	}
-	var id = UUID.randomUUID().toString();
-	String this_job = &apos;{&quot;id&quot;:&quot;&apos;+id+&apos;&quot;,&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;city&quot;:&apos;+city+&apos;}&apos;;
-	var jobList = vars.getObject(&quot;jobList&quot;);
-	jobList = jobList + this_job;
-	vars.putObject(&quot;jobList&quot;,jobList);
+				city &lt;&lt; (locsplit[1] );
+				}
+
+	jsonObject.job_title = title
+	jsonObject.job_link  = link	
+	jsonObject.company   = &quot;${company}&quot;
+	jsonObject.country   = country
+	jsonObject.city      = city			
+
+
+	vars.putObject(&quot;jobList&quot;,vars.getObject(&quot;jobList&quot;)+ new JsonBuilder(jsonObject).toPrettyString());
 }
 </stringProp>
                 <stringProp name="scriptLanguage">groovy</stringProp>

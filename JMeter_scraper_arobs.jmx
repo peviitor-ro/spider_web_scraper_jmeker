@@ -442,8 +442,9 @@ for( country_code in countries)
 			continue
 		}
 	
-		
+
 	for (loc in splitted){
+		
 		var locsplit=loc.split(&quot;-&quot;);
 		if(locsplit[0]==country_code)
 			if(locsplit.length == 1){
@@ -452,11 +453,17 @@ for( country_code in countries)
 			}
 			else
 				city &lt;&lt; (locsplit[1] );
+				if (city[0].toString()==&quot;Cluj Napoca&quot;) {city[0]=&quot;Cluj-Napoca&quot;; county=[&quot;Cluj&quot;];}
+				if (city[0].toString()==&quot;Bucharest&quot;) {county=[&quot;Ilfov&quot;];}
+				log.info(city[0].toString())
+				
+				
 				}
 
 	jsonObject.job_title = title
 	jsonObject.job_link  = link	
 	jsonObject.company   = &quot;${company}&quot;
+	jsonObject.county    = county
 	jsonObject.country   = country
 	jsonObject.city      = city			
 
@@ -577,6 +584,54 @@ vars.put(&quot;count&quot;,k as String);</stringProp>
                   <stringProp name="Header.value">3868877-2ef0-8763-a772-183db0c515cf</stringProp>
                 </elementProp>
               </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/v1/logo/add/" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">[&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;${company}&quot;,&#xd;
+    &quot;logo&quot;: &quot;https://arobs.com/wp-content/uploads/2020/09/arobs-transilvania-software-development-logo.png&quot;&#xd;
+  }&#xd;
+]</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/v1/logo/add/</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-11-20T17:01:56.01</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="accept" elementType="Header">
+                  <stringProp name="Header.name">accept</stringProp>
+                  <stringProp name="Header.value">*/*</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">Created from cURL on 2023-11-20T17:01:56.01</stringProp>
             </HeaderManager>
             <hashTree/>
           </hashTree>

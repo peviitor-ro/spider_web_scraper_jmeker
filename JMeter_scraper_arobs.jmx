@@ -410,7 +410,8 @@ vars.put(&quot;count&quot;,&quot;0&quot;);</stringProp>
                 <stringProp name="script">import groovy.json.JsonBuilder
 def jsonObject = [:]
 var k = vars.get(&quot;k&quot;);
-var title = vars.get(&quot;title_&quot;+k).split(&quot; - &quot;)[1];
+//var title = vars.get(&quot;title_&quot;+k).split(&quot; - &quot;)[1];
+var title = vars.get(&quot;title_&quot;+k);
 var link  = vars.get(&quot;link_&quot;+k);
 var locations =  vars.get(&quot;location_&quot;+k);
 var splitted = locations.split(&apos; \\\| &apos;);
@@ -487,6 +488,43 @@ vars.put(&quot;count&quot;,k as String);</stringProp>
             <hashTree/>
           </hashTree>
           <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>

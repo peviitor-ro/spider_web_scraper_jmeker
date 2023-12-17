@@ -17,11 +17,11 @@ jobs:
 
     - name: Download and install JMeter
       run: |
-        wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
-        tar -xvzf apache-jmeter-5.6.2.tgz
-        echo 'export PATH=$PATH:$PWD/apache-jmeter-5.6.2/bin' >> ~/.bashrc
+        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
+        tar -xf apache-jmeter-5.4.1.tgz
+        echo 'export PATH=$PATH:$PWD/apache-jmeter-5.4.1/bin' >> ~/.bashrc
         source ~/.bashrc
 
     - name: Run JMeter tests
       run: |
-        jmeter -n -t ApiUpdateFiles.jmx -l results.jtl
+        jmeter -v

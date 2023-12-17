@@ -1,7 +1,5 @@
 name: peviitor.ro
 on:
-  push:
-    branches: [ main ]
   schedule:
     - cron: '30 18 * * *'
   workflow_dispatch:
@@ -21,9 +19,9 @@ jobs:
 
     - name: Download and install JMeter
       run: |
-        wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.4.1.tgz
-        tar -xzf apache-jmeter-5.4.1.tgz
-        export PATH=$PATH:$PWD/apache-jmeter-5.4.1/bin
+        wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
+        tar -xvzf apache-jmeter-5.6.2.tgz
+        export PATH=$PATH:$PWD/apache-jmeter-5.6.2/bin
 
     - name: Run JMeter tests
       run: |

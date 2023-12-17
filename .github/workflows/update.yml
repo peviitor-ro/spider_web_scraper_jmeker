@@ -1,0 +1,19 @@
+name: Run JMeter Api update
+
+on: [push] 
+
+jobs:
+  jmeter_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2 
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Run JMeter tests
+      run: |
+        jmeter -n -t ApiUpdateFiles.jmx -l results.jtl

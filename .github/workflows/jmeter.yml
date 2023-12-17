@@ -5,10 +5,26 @@ on:
   schedule:
     - cron: '30 18 * * *'
   workflow_dispatch:
+
 jobs:
-  build:
+  jmeter_tests:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: run jmeter on github action
-        uses: sebiboga/run-jmeter-github-action@main
+    - uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Run JMeter tests
+      run: |
+        cd sites 
+
+        JMX_FILES=$(find . -name "*.jmx")
+
+        for FILE in $JMX_FILES; do
+          echo "Running test $FILE"
+          jmeter -n -t $FILE 
+        done

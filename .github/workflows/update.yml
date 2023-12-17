@@ -17,6 +17,6 @@ jobs:
       - name: run-jmeter-test
         run: |
           $GITHUB_WORKSPACE/apache-jmeter-5.6.2/bin/./jmeter.sh -n -t ApiUpdateFiles.jmx -l result.jtl
-          cat result.jtl
+
           
 

@@ -22,7 +22,7 @@ jobs:
         wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
         tar -xvzf apache-jmeter-5.6.2.tgz
         cd apache-jmeter-5.6.2/lib
-        wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar
+        wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2/cmdrunner-2.2.1.jar
         cd ext/
         wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.6/jmeter-plugins-manager-1.6.jar
         cd ..

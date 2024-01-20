@@ -355,7 +355,7 @@ vars.put(&quot;count&quot;,&quot;0&quot;);</stringProp>
                 <stringProp name="TestPlan.comments">Created from cURL on 2022-12-13T11:18:29.0202205</stringProp>
               </HeaderManager>
               <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="title" enabled="true">
+              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="title" enabled="false">
                 <stringProp name="XPathExtractor.default"></stringProp>
                 <stringProp name="XPathExtractor.refname">title</stringProp>
                 <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
@@ -384,6 +384,15 @@ vars.put(&quot;count&quot;,&quot;0&quot;);</stringProp>
                 <boolProp name="XPathExtractor.tolerant">true</boolProp>
                 <boolProp name="XPathExtractor.namespace">false</boolProp>
               </XPathExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">title</stringProp>
+                <stringProp name="RegexExtractor.regex">&lt;h3 &gt;\s+(.*)&lt;\/h3&gt;</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
               <hashTree/>
             </hashTree>
             <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">

@@ -475,14 +475,12 @@ for( country_code in countries)
 	jsonObject.company   = &quot;${company}&quot;
 	jsonObject.county    = county
 	jsonObject.country   = country
+	jsonObject.city   = city
 	
-     city	= city.toString();
-     city = city.replaceAll(&quot;Cluj Napoca&quot;, &quot;Cluj-Napoca&quot;)
+   city.eachWithIndex { item, index -&gt;
+    city[index] = item.replaceAll(&quot;Cluj Napoca&quot;, &quot;Cluj-Napoca&quot;)
+}
      
-	jsonObject.city      = city	
-
-     log.info(&quot;HELOOOOOO&quot;+city)
-
 	vars.putObject(&quot;jobList&quot;,vars.getObject(&quot;jobList&quot;)+ new JsonBuilder(jsonObject).toPrettyString());
 }
 </stringProp>

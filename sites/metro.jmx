@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.2">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -21,8 +21,8 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="scraper metro" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <stringProp name="LoopController.loops">1</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -30,7 +30,6 @@
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
       </ThreadGroup>
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step 1)  delete data from DB" enabled="true"/>
@@ -38,7 +37,6 @@
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="TEST" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="clean" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="company" elementType="HTTPArgument">
@@ -51,6 +49,7 @@
                 </collectionProp>
               </elementProp>
               <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/v1/clean/</stringProp>
@@ -59,13 +58,10 @@
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">false</boolProp>
-              <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-              <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-              <boolProp name="HTTPSampler.md5">false</boolProp>
-              <intProp name="HTTPSampler.ipSourceType">0</intProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="TestPlan.comments">Created from cURL on 2022-02-18T10:09:51.9270259</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
@@ -144,7 +140,6 @@
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PROD" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="clean" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="company" elementType="HTTPArgument">
@@ -157,6 +152,7 @@
                 </collectionProp>
               </elementProp>
               <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/v4/clean/</stringProp>
@@ -165,13 +161,10 @@
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">false</boolProp>
-              <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-              <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-              <boolProp name="HTTPSampler.md5">false</boolProp>
-              <intProp name="HTTPSampler.ipSourceType">0</intProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="TestPlan.comments">Created from cURL on 2022-02-18T10:09:51.9270259</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
@@ -301,25 +294,23 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step 2) read the jobs from website and transform the data" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jobs" enabled="true">
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
             <stringProp name="HTTPSampler.domain">cariere.metro.ro</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/jobs?q=&amp;options=&amp;page=1&amp;size=100</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-            <boolProp name="HTTPSampler.image_parser">false</boolProp>
-            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-            <boolProp name="HTTPSampler.md5">false</boolProp>
-            <intProp name="HTTPSampler.ipSourceType">0</intProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="TestPlan.comments">Created from cURL on 2023-03-10T12:37:20.9596646</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
@@ -395,7 +386,7 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
               <stringProp name="RegexExtractor.regex">&lt;a class=&quot;attrax-vacancy-tile__title attrax-vacancy-tile__item attrax-button&quot; href=&quot;\/job\/(.+?)&quot; role=&quot;button&quot; tabindex=&quot;0&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
-              <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -407,11 +398,11 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
           </ForeachController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="jobs_cities" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
               <stringProp name="HTTPSampler.domain">cariere.metro.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/job/${idd}</stringProp>
@@ -420,12 +411,9 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">false</boolProp>
-              <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-              <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-              <boolProp name="HTTPSampler.md5">false</boolProp>
-              <intProp name="HTTPSampler.ipSourceType">0</intProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="cities" enabled="true">
@@ -434,7 +422,7 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
                 <stringProp name="RegexExtractor.regex">&lt;li class=&quot;Location-wrapper&quot;&gt;\s*&lt;label class=&quot;Location&quot;&gt;\s*Location:\s*&lt;\/label&gt;\s*(.+?)\s*&lt;\/li&gt;</stringProp>
                 <stringProp name="RegexExtractor.template">$1$</stringProp>
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
               </RegexExtractor>
               <hashTree/>
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="titless" enabled="true">
@@ -443,7 +431,7 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
                 <stringProp name="RegexExtractor.regex"> &quot;@context&quot;: &quot;http:\/\/schema.org&quot;,\s*&quot;@type&quot;: &quot;JobPosting&quot;,\s*&quot;url&quot;: &quot;(.+?)&quot;,\s*&quot;title&quot;: &quot;(.+?)&quot;,</stringProp>
                 <stringProp name="RegexExtractor.template">$2$</stringProp>
                 <stringProp name="RegexExtractor.match_number">1</stringProp>
-                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
               </RegexExtractor>
               <hashTree/>
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="idss" enabled="true">
@@ -452,39 +440,64 @@ vars.putObject(&quot;joblist&quot;, joblist);</stringProp>
                 <stringProp name="RegexExtractor.regex"> &quot;@context&quot;: &quot;http:\/\/schema.org&quot;,\s*&quot;@type&quot;: &quot;JobPosting&quot;,\s*&quot;url&quot;: &quot;(.+?)&quot;,\s*&quot;title&quot;: &quot;(.+?)&quot;,</stringProp>
                 <stringProp name="RegexExtractor.template">$1$</stringProp>
                 <stringProp name="RegexExtractor.match_number">1</stringProp>
-                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
               </RegexExtractor>
               <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="joblocation" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">joblocation</stringProp>
+                <stringProp name="RegexExtractor.regex">&quot;jobLocation&quot;: (.*)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="address" enabled="true">
+                <stringProp name="JMESExtractor.referenceName">address</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">[0].address.addressLocality</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+                <stringProp name="Sample.scope">variable</stringProp>
+                <stringProp name="Scope.variable">joblocation</stringProp>
+              </JMESPathExtractor>
+              <hashTree/>
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="false">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">var x= vars.get(&quot;address&quot;)
+x = new String(x.getBytes(&quot;ISO-8859-1&quot;), &quot;UTF-8&quot;)
+log.info(&quot;====================&quot;)
+log.info(x.toString())
+log.info(&quot;====================&quot;)</stringProp>
+              </JSR223PostProcessor>
+              <hashTree/>
             </hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
             <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="id" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
-              <stringProp name="parameters">${__UUID}</stringProp>
-              <stringProp name="script">var guid=args[0];
-log.info(guid.toString());
-var k = vars.get(&quot;k&quot;);
-log.info(k.toString());
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">import org.apache.commons.text.StringEscapeUtils
+
 var title = vars.get(&quot;titless&quot;);
-title = title.replaceAll(&apos;È&#x9b;&apos;,&apos;ț&apos;); 
-title = title.replaceAll(&apos;Ä&#x83;&apos;,&apos;ă&apos;);
-title = title.replaceAll(&apos;Å&#x9e;&apos;,&apos;ș&apos;); //È&#x98;
-title = title.replaceAll(&apos;Ã¢&apos;,&apos;â&apos;); 
-//title = title.replaceAll(&apos;È&#x99;i&apos;,&apos;și&apos;);
-//title = title.replaceAll(&apos;â&#x80;&#x93;&apos;,&apos;–&apos;);
-log.info(title);
+title = new String(title.getBytes(&quot;ISO-8859-1&quot;), &quot;UTF-8&quot;)
+title = StringEscapeUtils.unescapeHtml4(title)
+
 var id = vars.get(&quot;idss&quot;);
 var link =id;
-log.info(link);
 var city = vars.get(&quot;cities_&quot; + 1); 
-city = city.replaceAll(&apos;Ã¢&apos;,&apos;â&apos;);
-city = city.replaceAll(&apos;Å&#x9f;&apos;,&apos;ș&apos;);
-city = city.replaceAll(&apos;Ã®&apos;,&apos;â&apos;);
-city = city.replaceAll(&apos;Ä&#x83;&apos;,&apos;ă&apos;);
-city = city.replaceAll(&apos;Å£&apos;,&apos;ț&apos;);
+city = new String(city.getBytes(&quot;ISO-8859-1&quot;), &quot;UTF-8&quot;)
+city = StringEscapeUtils.unescapeHtml4(city)
 
-log.info(city);
+
 var company = vars.get(&quot;company&quot;);
-String job=&apos;{&quot;id&quot;: &quot;&apos;+guid+&apos;&quot;,&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;,&quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,    &quot;country&quot;: &quot;România&quot;,&quot;city&quot;: &quot;&apos;+city+&apos;&quot; }&apos;;
+String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;,&quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,    &quot;country&quot;: &quot;România&quot;,&quot;city&quot;: &quot;&apos;+city+&apos;&quot; }&apos;;
 var joblist = vars.getObject(&quot;joblist&quot;);
 joblist = joblist + job;
 vars.putObject(&quot;joblist&quot;, joblist);
@@ -498,43 +511,6 @@ vars.putObject(&quot;joblist&quot;, joblist);
             <boolProp name="displayJMeterVariables">true</boolProp>
             <boolProp name="displaySystemProperties">false</boolProp>
           </DebugSampler>
-          <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
           <hashTree/>
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step 3) push data to DB" enabled="true"/>
@@ -553,6 +529,7 @@ vars.putObject(&quot;joblist&quot;, joblist);
                 </collectionProp>
               </elementProp>
               <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/v1/update/</stringProp>
@@ -561,13 +538,10 @@ vars.putObject(&quot;joblist&quot;, joblist);
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">false</boolProp>
-              <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-              <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-              <boolProp name="HTTPSampler.md5">false</boolProp>
-              <intProp name="HTTPSampler.ipSourceType">0</intProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="TestPlan.comments">Created from cURL on 2022-02-18T10:12:11.143171</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
@@ -657,6 +631,7 @@ vars.putObject(&quot;joblist&quot;, joblist);
                 </collectionProp>
               </elementProp>
               <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/v4/update/</stringProp>
@@ -665,13 +640,10 @@ vars.putObject(&quot;joblist&quot;, joblist);
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">false</boolProp>
-              <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-              <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-              <boolProp name="HTTPSampler.md5">false</boolProp>
-              <intProp name="HTTPSampler.ipSourceType">0</intProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="TestPlan.comments">Created from cURL on 2022-02-18T10:12:11.143171</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
@@ -767,20 +739,19 @@ vars.putObject(&quot;joblist&quot;, joblist);
                 </collectionProp>
               </elementProp>
               <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/v1/logo/add/</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-              <boolProp name="HTTPSampler.image_parser">false</boolProp>
-              <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-              <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-              <boolProp name="HTTPSampler.md5">false</boolProp>
-              <intProp name="HTTPSampler.ipSourceType">0</intProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="TestPlan.comments">Created from cURL on 2023-10-15T14:21:54.087</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
@@ -864,19 +835,18 @@ vars.put(&quot;jobsLength&quot;, String.valueOf(jobsLength))</stringProp>
             </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">dev.laurentiumarian.ro</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/dataset/spider_web_scraper_jmeker/metro.jmx/</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-          <boolProp name="HTTPSampler.image_parser">false</boolProp>
-          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-          <boolProp name="HTTPSampler.md5">false</boolProp>
-          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">

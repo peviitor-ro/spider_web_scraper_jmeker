@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.2">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="scraper" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="scraper">
       <stringProp name="TestPlan.comments">please update company name (code for company without any space)</stringProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
-      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
           <elementProp name="company" elementType="Argument">
             <stringProp name="Argument.name">company</stringProp>
@@ -23,33 +21,33 @@
             <stringProp name="Argument.value">https://www.vonconsulting.ro/ro/jobs/</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="apikey" elementType="Argument">
+            <stringProp name="Argument.name">apikey</stringProp>
+            <stringProp name="Argument.value">${__P(apikey)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="peviitor.ro" enabled="true">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="peviitor.ro">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <stringProp name="LoopController.loops">1</stringProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="TestPlan.comments">https://peviitor.ro/</stringProp>
-        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true">
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====">
           <stringProp name="TestPlan.comments">CLEAR</stringProp>
         </GenericController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete all data from Search Engine for company ${company} " enabled="true">
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete all data from Search Engine for company ${company} ">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="company" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -65,19 +63,11 @@
             <stringProp name="HTTPSampler.path">/v4/clean/</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-            <boolProp name="HTTPSampler.image_parser">false</boolProp>
-            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-            <boolProp name="HTTPSampler.md5">false</boolProp>
-            <intProp name="HTTPSampler.ipSourceType">0</intProp>
             <stringProp name="TestPlan.comments">Delete</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -86,7 +76,7 @@
 vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">apikey</stringProp>
@@ -96,7 +86,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -134,12 +124,11 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
-          <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
-          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller" enabled="true">
+          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller">
             <stringProp name="WhileController.condition">${__javaScript(&quot;${next}&quot;!=&quot;not_found&quot;,)}</stringProp>
           </WhileController>
           <hashTree>
@@ -156,71 +145,54 @@ vars.put(&quot;next&quot;,url)
 </stringProp>
             </JSR223Sampler>
             <hashTree/>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ====" enabled="true"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ===="/>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="company&apos;s website - careers page ${next}" enabled="true">
-                <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="company&apos;s website - careers page ${next}">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
                   <collectionProp name="Arguments.arguments"/>
                 </elementProp>
                 <stringProp name="HTTPSampler.path">${next}</stringProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-                <boolProp name="HTTPSampler.image_parser">false</boolProp>
-                <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-                <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-                <boolProp name="HTTPSampler.md5">false</boolProp>
-                <intProp name="HTTPSampler.ipSourceType">0</intProp>
                 <stringProp name="TestPlan.comments">careers page</stringProp>
               </HTTPSamplerProxy>
               <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
                   <collectionProp name="HeaderManager.headers"/>
                 </HeaderManager>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title">
                   <stringProp name="RegexExtractor.refname">title</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;left-align left&quot;&gt;&lt;a href=&apos;(.*)&apos;rel=&apos;bookmark&apos; title=&apos;(.*)&apos;&gt;(.*)&lt;\/a&gt;&lt;\/h3&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$2$</stringProp>
                   <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link">
                   <stringProp name="RegexExtractor.refname">link</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;left-align left&quot;&gt;&lt;a href=&apos;(.*)&apos;rel=&apos;bookmark&apos; title=&apos;(.*)&apos;&gt;(.*)&lt;\/a&gt;&lt;\/h3&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="city" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="city">
                   <stringProp name="RegexExtractor.refname">city</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;i class=&quot;fas fa-map-marker-alt&quot;&gt;&lt;\/i&gt; (.*)\n</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                  <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="next" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="next">
                   <stringProp name="RegexExtractor.refname">next</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;a class=&quot;next page-numbers&quot; href=&quot;(.+?)&quot;&gt;&lt;i class=&quot;material-icons&quot;&gt;chevron_right&lt;\/i&gt;&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">not_found</stringProp>
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
-                  <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
               </hashTree>
-              <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+              <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
                 <boolProp name="ResultCollector.error_logging">false</boolProp>
                 <objProp>
                   <name>saveConfig</name>
@@ -258,18 +230,18 @@ vars.put(&quot;next&quot;,url)
               </ResultCollector>
               <hashTree/>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true">
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====">
               <stringProp name="TestPlan.comments">Transform</stringProp>
             </GenericController>
             <hashTree>
-              <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
+              <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
                 <stringProp name="ForeachController.inputVal">title</stringProp>
                 <stringProp name="ForeachController.returnVal">job</stringProp>
                 <boolProp name="ForeachController.useSeparator">true</boolProp>
                 <stringProp name="ForeachController.startIndex">0</stringProp>
               </ForeachController>
               <hashTree>
-                <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+                <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
                   <stringProp name="CounterConfig.start">1</stringProp>
                   <stringProp name="CounterConfig.end">12</stringProp>
                   <stringProp name="CounterConfig.incr">1</stringProp>
@@ -278,12 +250,11 @@ vars.put(&quot;next&quot;,url)
                   <boolProp name="CounterConfig.per_user">false</boolProp>
                 </CounterConfig>
                 <hashTree/>
-                <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="${job}" enabled="true">
+                <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="${job}">
                   <stringProp name="cacheKey">true</stringProp>
                   <stringProp name="filename"></stringProp>
                   <stringProp name="parameters"></stringProp>
-                  <stringProp name="script">var id = UUID.randomUUID().toString();
-var k = vars.get(&quot;k&quot;);
+                  <stringProp name="script">var k = vars.get(&quot;k&quot;);
 var title = vars.get(&quot;title_&quot;+k);
 var link  = vars.get(&quot;link_&quot;+k);
 var country = vars.get(&quot;country_&quot;+k);
@@ -294,7 +265,7 @@ vars.put(&quot;city&quot;, city)
 city = city.replaceAll(&quot;[\\n\\r]&quot;, &quot;&quot;);
 
 
-String this_job = &apos;{&quot;id&quot;:&quot;&apos;+id+&apos;&quot;,&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;${country}&quot;,&quot;city&quot;:&quot;&apos;+city+&apos;&quot;}&apos;;
+String this_job = &apos;{&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;${country}&quot;,&quot;city&quot;:&quot;&apos;+city+&apos;&quot;}&apos;;
 var jobList = vars.getObject(&quot;jobList&quot;);
 jobList = jobList + this_job;
 vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
@@ -302,7 +273,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
               </hashTree>
-              <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+              <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
                 <boolProp name="ResultCollector.error_logging">false</boolProp>
                 <objProp>
                   <name>saveConfig</name>
@@ -342,14 +313,13 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ====" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ===="/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="push jos to peviitor.ro database" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="push jos to peviitor.ro database">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">${jobList}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
@@ -361,19 +331,11 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <stringProp name="HTTPSampler.path">/v4/update/</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-            <boolProp name="HTTPSampler.image_parser">false</boolProp>
-            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-            <boolProp name="HTTPSampler.md5">false</boolProp>
-            <intProp name="HTTPSampler.ipSourceType">0</intProp>
             <stringProp name="TestPlan.comments">add jobs</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Accept" elementType="Header">
                   <stringProp name="Header.name">Accept</stringProp>
@@ -406,8 +368,53 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="System.out.println(jobList)">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">var jobList = vars.getObject(&quot;jobList&quot;);
+System.out.println(jobList)</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="dev.laurentiumarian.ro/dataset/spider_web_scraper_jmeker/yardi.jmx/">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <stringProp name="Argument.value">{&quot;data&quot;: ${jobsLength}}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">dev.laurentiumarian.ro</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/dataset/spider_web_scraper_jmeker/yardi.jmx/</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">content-type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="jobsLength">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">vars.put(&quot;jobsLength&quot;,vars.getObject(&quot;jobList&quot;).size().toString())</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -443,57 +450,6 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             </objProp>
             <stringProp name="filename"></stringProp>
           </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
-          <stringProp name="scriptLanguage">groovy</stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="script">import groovy.json.JsonOutput
-def jobListContent = vars.get(&apos;jobList&apos;)
-def jsonObject = new groovy.json.JsonSlurper().parseText(jobListContent)
-def jsonString = JsonOutput.toJson(jsonObject)
-System.out.println(jsonString)
-def jobsLength = jsonObject.size()
-vars.put(&quot;jobsLength&quot;, String.valueOf(jobsLength))</stringProp>
-        </JSR223Sampler>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;data&quot;: ${jobsLength}}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">dev.laurentiumarian.ro</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.path">/dataset/spider_web_scraper_jmeker/vonconsulting.jmx/</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-          <boolProp name="HTTPSampler.image_parser">false</boolProp>
-          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-          <boolProp name="HTTPSampler.md5">false</boolProp>
-          <intProp name="HTTPSampler.ipSourceType">0</intProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">content-type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
           <hashTree/>
         </hashTree>
       </hashTree>

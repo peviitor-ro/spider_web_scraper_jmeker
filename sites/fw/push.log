@@ -1,0 +1,42 @@
+2024-02-18 19:18:16,421 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2024-02-18 19:18:16,429 INFO o.a.j.JMeter: Loading user properties from: C:\JMeter\apache-jmeter-5.5\bin\user.properties
+2024-02-18 19:18:16,429 INFO o.a.j.JMeter: Loading system properties from: C:\JMeter\apache-jmeter-5.5\bin\system.properties
+2024-02-18 19:18:16,436 INFO o.a.j.JMeter: Copyright (c) 1998-2022 The Apache Software Foundation
+2024-02-18 19:18:16,436 INFO o.a.j.JMeter: Version 5.5
+2024-02-18 19:18:16,436 INFO o.a.j.JMeter: java.version=1.8.0_401
+2024-02-18 19:18:16,436 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) Client VM
+2024-02-18 19:18:16,436 INFO o.a.j.JMeter: os.name=Windows 11
+2024-02-18 19:18:16,436 INFO o.a.j.JMeter: os.arch=x86
+2024-02-18 19:18:16,447 INFO o.a.j.JMeter: os.version=10.0
+2024-02-18 19:18:16,447 INFO o.a.j.JMeter: file.encoding=Cp1252
+2024-02-18 19:18:16,447 INFO o.a.j.JMeter: java.awt.headless=null
+2024-02-18 19:18:16,447 INFO o.a.j.JMeter: Max memory     =1073741824
+2024-02-18 19:18:16,447 INFO o.a.j.JMeter: Available Processors =8
+2024-02-18 19:18:16,449 INFO o.a.j.JMeter: Default Locale=English (EN)
+2024-02-18 19:18:16,449 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2024-02-18 19:18:16,449 INFO o.a.j.JMeter: JMeterHome=C:\JMeter\apache-jmeter-5.5
+2024-02-18 19:18:16,449 INFO o.a.j.JMeter: user.dir  =C:\SEBI\_github\scraper_jmeker\sites\fw
+2024-02-18 19:18:16,467 INFO o.a.j.JMeter: PWD       =C:\SEBI\_github\scraper_jmeker\sites\fw
+2024-02-18 19:18:16,468 INFO o.a.j.JMeter: IP: 192.168.1.5 Name: EPROBUCW00F1 FullName: EPROBUCW00F1
+2024-02-18 19:18:16,478 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2024-02-18 19:18:16,578 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: laf:javax.swing.plaf.metal.MetalLookAndFeel
+2024-02-18 19:18:17,874 INFO o.j.r.JARSourceHTTP: Found cached repo
+2024-02-18 19:18:18,034 INFO o.j.r.PluginManager: Plugins Status: [jpgc-dummy=0.4, jpgc-plugins-manager=1.10, bzm-random-csv=0.8, jmeter-core=5.5, jmeter-ftp=5.5, jmeter-http=5.5, jmeter-jdbc=5.5, jmeter-jms=5.5, jmeter-junit=5.5, jmeter-java=5.5, jmeter-ldap=5.5, jmeter-mail=5.5, jmeter-mongodb=5.5, jmeter-native=5.5, jmeter-tcp=5.5, jmeter-components=5.5]
+2024-02-18 19:18:18,803 INFO o.a.j.JMeterGuiLauncher: Loading file: push.jmx
+2024-02-18 19:18:18,804 INFO o.a.j.s.FileServer: Default base='C:\SEBI\_github\scraper_jmeker\sites\fw'
+2024-02-18 19:18:18,806 INFO o.a.j.s.FileServer: Set new base='C:\SEBI\_github\scraper_jmeker\sites\fw'
+2024-02-18 19:18:18,914 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2024-02-18 19:18:18,923 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2024-02-18 19:18:18,924 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2024-02-18 19:18:18,925 INFO o.a.j.s.SaveService: Loading file: push.jmx
+2024-02-18 19:18:19,000 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-02-18 19:18:19,000 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-02-18 19:18:19,000 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-02-18 19:18:19,000 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-02-18 19:18:19,000 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2024-02-18 19:18:19,000 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2024-02-18 19:18:19,045 INFO o.a.j.s.FileServer: Set new base='C:\SEBI\_github\scraper_jmeker\sites\fw'
+2024-02-18 19:18:19,239 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2024-02-18 19:18:19,239 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2024-02-18 19:18:19,239 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2024-02-18 19:18:19,239 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000

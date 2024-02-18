@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="scraper">
       <stringProp name="TestPlan.comments">please update company name (code for company without any space)</stringProp>
@@ -38,10 +38,13 @@
           </elementProp>
         </collectionProp>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="borgdesign.ro">
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="borgdesign.ro" enabled="true">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
@@ -50,17 +53,19 @@
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <stringProp name="TestPlan.comments">https://borgdesign.ro</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====">
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true">
           <stringProp name="TestPlan.comments">CLEAR</stringProp>
         </GenericController>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx" enabled="true">
             <stringProp name="IncludeController.includepath">fw/clean.jmx</stringProp>
           </IncludeController>
           <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -98,30 +103,38 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ====" enabled="true"/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
             <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="company&apos;s website - careers page">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="company&apos;s website - careers page" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
               <stringProp name="HTTPSampler.domain">jobs.borgdesign.ro</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path"></stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
               <stringProp name="TestPlan.comments">careers page</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers"/>
               </HeaderManager>
               <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="title">
+              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="title" enabled="true">
                 <stringProp name="XPathExtractor.default"></stringProp>
                 <stringProp name="XPathExtractor.refname">title</stringProp>
                 <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
@@ -132,7 +145,7 @@
                 <boolProp name="XPathExtractor.fragment">true</boolProp>
               </XPathExtractor>
               <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="active">
+              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="active" enabled="true">
                 <stringProp name="XPathExtractor.default"></stringProp>
                 <stringProp name="XPathExtractor.refname">active</stringProp>
                 <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
@@ -142,7 +155,7 @@
                 <boolProp name="XPathExtractor.namespace">false</boolProp>
               </XPathExtractor>
               <hashTree/>
-              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
@@ -151,14 +164,14 @@
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
               <stringProp name="ForeachController.inputVal">title</stringProp>
               <stringProp name="ForeachController.returnVal">x</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
               <stringProp name="ForeachController.startIndex">0</stringProp>
             </ForeachController>
             <hashTree>
-              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
+              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
                 <stringProp name="CounterConfig.start">1</stringProp>
                 <stringProp name="CounterConfig.end"></stringProp>
                 <stringProp name="CounterConfig.incr">1</stringProp>
@@ -167,8 +180,8 @@
                 <boolProp name="CounterConfig.per_user">false</boolProp>
               </CounterConfig>
               <hashTree/>
-              <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="${x}">
-                <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
+              <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="${x}" enabled="true">
+                <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
                   <collectionProp name="Arguments.arguments">
                     <elementProp name="Sleep_Time" elementType="Argument">
                       <stringProp name="Argument.name">Sleep_Time</stringProp>
@@ -182,14 +195,17 @@
                     </elementProp>
                     <elementProp name="Label" elementType="Argument">
                       <stringProp name="Argument.name">Label</stringProp>
+                      <stringProp name="Argument.value"></stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                     <elementProp name="ResponseCode" elementType="Argument">
                       <stringProp name="Argument.name">ResponseCode</stringProp>
+                      <stringProp name="Argument.value"></stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                     <elementProp name="ResponseMessage" elementType="Argument">
                       <stringProp name="Argument.name">ResponseMessage</stringProp>
+                      <stringProp name="Argument.value"></stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                     <elementProp name="Status" elementType="Argument">
@@ -199,10 +215,12 @@
                     </elementProp>
                     <elementProp name="SamplerData" elementType="Argument">
                       <stringProp name="Argument.name">SamplerData</stringProp>
+                      <stringProp name="Argument.value"></stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                     <elementProp name="ResultData" elementType="Argument">
                       <stringProp name="Argument.name">ResultData</stringProp>
+                      <stringProp name="Argument.value"></stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                   </collectionProp>
@@ -210,7 +228,7 @@
                 <stringProp name="classname">org.apache.jmeter.protocol.java.test.JavaTest</stringProp>
               </JavaSampler>
               <hashTree/>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
                 <stringProp name="scriptLanguage">groovy</stringProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
@@ -223,7 +241,7 @@ vars.put(&quot;title_&quot;+k,vars.get(&quot;x&quot;).replaceAll(/&lt;[^&gt;]+&g
               <hashTree/>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -261,23 +279,23 @@ vars.put(&quot;title_&quot;+k,vars.get(&quot;x&quot;).replaceAll(/&lt;[^&gt;]+&g
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====">
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true">
           <stringProp name="TestPlan.comments">Transform</stringProp>
         </GenericController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
             <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
               <stringProp name="ForeachController.inputVal">title</stringProp>
               <stringProp name="ForeachController.returnVal">job</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
               <stringProp name="ForeachController.startIndex">0</stringProp>
             </ForeachController>
             <hashTree>
-              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
+              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
                 <stringProp name="CounterConfig.start">1</stringProp>
                 <stringProp name="CounterConfig.end"></stringProp>
                 <stringProp name="CounterConfig.incr">1</stringProp>
@@ -286,7 +304,7 @@ vars.put(&quot;title_&quot;+k,vars.get(&quot;x&quot;).replaceAll(/&lt;[^&gt;]+&g
                 <boolProp name="CounterConfig.per_user">false</boolProp>
               </CounterConfig>
               <hashTree/>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="${job}">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="${job}" enabled="true">
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
@@ -309,7 +327,7 @@ if (activ==&quot;Activ&quot;){
               <hashTree/>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -347,14 +365,14 @@ if (activ==&quot;Activ&quot;){
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ====" enabled="true"/>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx" enabled="true">
             <stringProp name="IncludeController.includepath">fw/push.jmx</stringProp>
           </IncludeController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

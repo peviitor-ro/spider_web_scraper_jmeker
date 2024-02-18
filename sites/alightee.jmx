@@ -61,7 +61,7 @@
           <stringProp name="TestPlan.comments">CLEAR</stringProp>
         </GenericController>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/clean.jmx">
             <stringProp name="IncludeController.includepath">fw/clean.jmx</stringProp>
           </IncludeController>
           <hashTree/>

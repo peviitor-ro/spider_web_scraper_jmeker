@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Java
       uses: actions/setup-java@v2
@@ -19,9 +19,9 @@ jobs:
 
     - name: Download and install JMeter
       run: |
-        wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
-        tar -xvzf apache-jmeter-5.6.2.tgz
-        cd apache-jmeter-5.6.2/lib
+        wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
+        tar -xvzf apache-jmeter-5.6.3.tgz
+        cd apache-jmeter-5.6.3/lib
         wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2.1/cmdrunner-2.2.1.jar
         cd ext/
         wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.6/jmeter-plugins-manager-1.6.jar
@@ -30,6 +30,9 @@ jobs:
         export PATH=$PATH:$PWD/apache-jmeter-5.6.2/bin
 
     - name: Run JMeter tests
+      env:
+          APIKEY: ${{ secrets.APIKEY }}
+          
       run: |
         cd sites 
 
@@ -37,5 +40,5 @@ jobs:
 
         for FILE in $JMX_FILES; do
           echo "Running test $FILE"
-          $GITHUB_WORKSPACE/apache-jmeter-5.6.2/bin/./jmeter.sh -n -t $FILE 
+          $GITHUB_WORKSPACE/apache-jmeter-5.6.3/bin/./jmeter.sh -n -t $FILE -Japikey=${APIKEY}
         done

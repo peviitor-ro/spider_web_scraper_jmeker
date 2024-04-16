@@ -57,7 +57,7 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true">
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="false">
           <stringProp name="TestPlan.comments">CLEAR</stringProp>
         </GenericController>
         <hashTree>
@@ -316,9 +316,16 @@ var country = vars.get(&quot;country&quot;);
 var city =  vars.get(&quot;city&quot;);
 
 
+
 if (activ==&quot;Activ&quot;){
 	String this_job = &apos;{&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;city&quot;:&quot;&apos;+city+&apos;&quot;}&apos;;
 	var jobList = vars.getObject(&quot;jobList&quot;);
+	
+// If jobList is null, initialize it as an empty list
+if (jobList == null) {
+    jobList = []
+}
+	
 	jobList = jobList + this_job;
 	vars.putObject(&quot;jobList&quot;,jobList);
 }</stringProp>

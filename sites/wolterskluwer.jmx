@@ -42,7 +42,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true">
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="false">
           <stringProp name="TestPlan.comments">CLEAR</stringProp>
         </GenericController>
         <hashTree>
@@ -277,6 +277,7 @@ vars.put(&quot;k&quot;,&quot;0&quot;);</stringProp>
                   <stringProp name="ForeachController.inputVal">title</stringProp>
                   <stringProp name="ForeachController.returnVal">job</stringProp>
                   <boolProp name="ForeachController.useSeparator">true</boolProp>
+                  <stringProp name="ForeachController.startIndex">0</stringProp>
                 </ForeachController>
                 <hashTree>
                   <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler   k =k+1" enabled="true">
@@ -286,32 +287,38 @@ vars.put(&quot;k&quot;,&quot;0&quot;);</stringProp>
                     <stringProp name="cacheKey">true</stringProp>
                     <stringProp name="script">var k = vars.get(&quot;k&quot;).toInteger();
 k = k + 1;
-vars.put(&quot;k&quot;,k.toString());
-
-log.info(&quot;=================================================&quot;)
-log.info(k.toString())</stringProp>
+vars.put(&quot;k&quot;,k.toString());</stringProp>
                   </JSR223Sampler>
                   <hashTree/>
                   <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="${job}" enabled="true">
                     <stringProp name="cacheKey">true</stringProp>
                     <stringProp name="filename"></stringProp>
                     <stringProp name="parameters"></stringProp>
-                    <stringProp name="script">var k = vars.get(&quot;k&quot;);
-var title = vars.get(&quot;title_&quot;+k);
-var link  = &quot;https://wk.wd3.myworkdayjobs.com/en-US/External&quot;+vars.get(&quot;link_&quot;+k);
+                    <stringProp name="script">import groovy.json.JsonOutput
+
+var k = vars.get(&quot;k&quot;);
 var country;
 var city;
 var location =  vars.get(&quot;city_&quot;+k);
-country = &quot;România&quot;;
 
-log.info(location.split(&quot; - &quot;).length.toString());
 if (location.split(&quot; - &quot;).length&gt;1) {city =location.split(&quot; - &quot;)[1].toString();} else {city=&quot;Cluj-Napoca&quot;;}
 
-String this_job = &apos;{&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;city&quot;:&quot;&apos;+city+&apos;&quot;}&apos;;
-var jobList = vars.getObject(&quot;jobList&quot;);
-jobList = jobList + this_job;
-vars.putObject(&quot;jobList&quot;,jobList);
-log.info(city.toString());</stringProp>
+def thisjob = [:]
+thisjob[&apos;job_title&apos;] = vars.get(&quot;title_&quot; + k)
+thisjob[&apos;job_link&apos;] = &apos;https://wk.wd3.myworkdayjobs.com/en-US/External&apos; + vars.get(&quot;link_&quot; + k)
+thisjob[&apos;country&apos;] = &apos;România&apos;
+thisjob[&apos;city&apos;] = city
+thisjob[&apos;county&apos;] = &quot;Cluj&quot;
+thisjob[&apos;remote&apos;] = [&quot;on-site&quot;,&quot;remote&quot;]
+thisjob[&apos;company&apos;] = &quot;${company}&quot;
+
+def jsonOutput = JsonOutput.toJson(thisjob)
+def jobList = vars.getObject(&quot;jobList&quot;)
+if (jobList == null) {
+    jobList = []
+}
+jobList &lt;&lt; jsonOutput
+vars.putObject(&quot;jobList&quot;, jobList)</stringProp>
                     <stringProp name="scriptLanguage">groovy</stringProp>
                   </JSR223Sampler>
                   <hashTree/>

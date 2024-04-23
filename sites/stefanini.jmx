@@ -20,14 +20,14 @@
             <stringProp name="Argument.value">Romania</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="apikey" elementType="Argument">
-            <stringProp name="Argument.name">apikey</stringProp>
-            <stringProp name="Argument.value">${__P(apikey)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="logo" elementType="Argument">
             <stringProp name="Argument.name">logo</stringProp>
             <stringProp name="Argument.value">https://jobs2.smartsearchonline.com/stefaniniEMEA/jobs/logo-emea.png</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="county" elementType="Argument">
+            <stringProp name="Argument.name">county</stringProp>
+            <stringProp name="Argument.value">Bucuresti</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -245,58 +245,79 @@
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
-                <stringProp name="script">var k = vars.get(&quot;k&quot;);
-var title = vars.get(&quot;title_&quot;+k);
-var link  = vars.get(&quot;link_&quot;+k);
-var country = vars.get(&quot;country&quot;);
-var city =  vars.get(&quot;city&quot;);
+                <stringProp name="script">import groovy.json.JsonOutput
 
-String this_job = &apos;{&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;city&quot;:&quot;&apos;+city+&apos;&quot;}&apos;;
-var jobList = vars.getObject(&quot;jobList&quot;);
-jobList = jobList + this_job;
-vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
+var k = vars.get(&quot;k&quot;);
+def thisjob = [:]
+
+// Convert the job title to a string explicitly
+thisjob[&apos;job_title&apos;] = vars.get(&quot;title_&quot;+k);
+thisjob[&apos;job_link&apos;] = vars.get(&quot;link_&quot;+k);
+thisjob[&apos;country&apos;] = vars.get(&quot;country&quot;);
+thisjob[&apos;city&apos;] = vars.get(&quot;city&quot;);
+thisjob[&apos;county&apos;] = vars.get(&quot;county&quot;);
+thisjob[&apos;remote&apos;] = &apos;remote&apos;
+thisjob[&apos;company&apos;] = &quot;${company}&quot;
+
+// Convert this_job to JSON format
+def jsonOutput = JsonOutput.toJson(thisjob)
+
+// Retrieve the jobList from vars
+def jobList = vars.getObject(&quot;jobList&quot;)
+
+// If jobList is null, initialize it as an empty list
+if (jobList == null) {
+    jobList = []
+}
+
+// Add the current job JSON to the jobList
+jobList &lt;&lt; jsonOutput
+
+// Update the jobList in vars
+vars.putObject(&quot;jobList&quot;, jobList)</stringProp>
                 <stringProp name="scriptLanguage">groovy</stringProp>
               </JSR223Sampler>
-              <hashTree/>
+              <hashTree>
+                <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+                  <boolProp name="ResultCollector.error_logging">false</boolProp>
+                  <objProp>
+                    <name>saveConfig</name>
+                    <value class="SampleSaveConfiguration">
+                      <time>true</time>
+                      <latency>true</latency>
+                      <timestamp>true</timestamp>
+                      <success>true</success>
+                      <label>true</label>
+                      <code>true</code>
+                      <message>true</message>
+                      <threadName>true</threadName>
+                      <dataType>true</dataType>
+                      <encoding>false</encoding>
+                      <assertions>true</assertions>
+                      <subresults>true</subresults>
+                      <responseData>false</responseData>
+                      <samplerData>false</samplerData>
+                      <xml>false</xml>
+                      <fieldNames>true</fieldNames>
+                      <responseHeaders>false</responseHeaders>
+                      <requestHeaders>false</requestHeaders>
+                      <responseDataOnError>false</responseDataOnError>
+                      <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                      <assertionsResultsToSave>0</assertionsResultsToSave>
+                      <bytes>true</bytes>
+                      <sentBytes>true</sentBytes>
+                      <url>true</url>
+                      <threadCounts>true</threadCounts>
+                      <idleTime>true</idleTime>
+                      <connectTime>true</connectTime>
+                    </value>
+                  </objProp>
+                  <stringProp name="filename"></stringProp>
+                </ResultCollector>
+                <hashTree/>
+              </hashTree>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ====" enabled="true"/>
         <hashTree>

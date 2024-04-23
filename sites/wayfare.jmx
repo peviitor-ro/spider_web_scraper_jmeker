@@ -42,7 +42,7 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true">
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="false">
           <stringProp name="TestPlan.comments">CLEAR</stringProp>
         </GenericController>
         <hashTree>
@@ -288,19 +288,31 @@
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
-                <stringProp name="script">var k = vars.get(&quot;k&quot;);
-log.info(k.toString());
-var title = vars.get(&quot;title&quot;);
-log.info(title);
-var link =vars.get(&quot;url&quot;);
-var city = &quot;Cluj-Napoca&quot;;
-log.info(city);
-var company = vars.get(&quot;company&quot;);
-String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;,&quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,    &quot;country&quot;: &quot;România&quot;,&quot;city&quot;: &quot;&apos;+city+&apos;&quot; }&apos;;
-var joblist = vars.getObject(&quot;jobList&quot;);
-joblist = joblist + job;
-vars.putObject(&quot;jobList&quot;, joblist);
-</stringProp>
+                <stringProp name="script">import groovy.json.JsonOutput
+
+var k = vars.get(&quot;k&quot;);
+
+
+def thisjob = [:]
+
+thisjob[&apos;job_title&apos;] = vars.get(&quot;title&quot;);
+thisjob[&apos;job_link&apos;] = vars.get(&quot;url&quot;);
+thisjob[&apos;country&apos;] = &apos;Romania&apos;
+thisjob[&apos;city&apos;] = &apos;Cluj-Napoca&apos;
+thisjob[&apos;remote&apos;] = &apos;remote&apos;
+thisjob[&apos;company&apos;] = &apos;${company}&apos;
+
+
+def jsonOutput = JsonOutput.toJson(thisjob)
+def jobList = vars.getObject(&quot;jobList&quot;)
+
+// If jobList is null, initialize it as an empty list
+if (jobList == null) {
+    jobList = []
+}
+
+jobList &lt;&lt; jsonOutput
+vars.putObject(&quot;jobList&quot;, jobList)</stringProp>
                 <stringProp name="scriptLanguage">groovy</stringProp>
               </JSR223Sampler>
               <hashTree/>

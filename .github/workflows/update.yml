@@ -11,7 +11,7 @@ jobs:
 
       - name: setup-jmeter
         run: |
-          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
           sudo tar -xvf apache-jmeter-5.6.2.tgz
           
       - name: run-jmeter-test

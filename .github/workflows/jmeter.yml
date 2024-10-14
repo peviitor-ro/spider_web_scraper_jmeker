@@ -27,7 +27,7 @@ jobs:
         wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.6/jmeter-plugins-manager-1.6.jar
         cd ..
         java  -jar cmdrunner-2.2.1.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-dummy
-        export PATH=$PATH:$PWD/apache-jmeter-5.6.2/bin
+        export PATH=$PATH:$PWD/apache-jmeter-5.6.3/bin
 
     - name: Run JMeter tests
       env:

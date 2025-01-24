@@ -139,7 +139,7 @@
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
                 <stringProp name="RegexExtractor.refname">link</stringProp>
                 <stringProp name="RegexExtractor.regex">&lt;h3&gt;&lt;a href=&quot;(.*?)&quot; title=&quot;(.*?)&quot;&gt;(.*?)&lt;\/a&gt;&lt;\/h3&gt;</stringProp>
-                <stringProp name="RegexExtractor.template">https://www.artsoft-consult.ro/$1$</stringProp>
+                <stringProp name="RegexExtractor.template">https://www.artsoft-consult.ro$1$</stringProp>
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                 <stringProp name="RegexExtractor.default"></stringProp>

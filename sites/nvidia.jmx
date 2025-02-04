@@ -319,7 +319,7 @@ log.info(k.toString());
 var title=vars.get(&quot;jobs_&quot; + k);
 var city=vars.get(&quot;city_&quot;+k);
 log.info(title);
-var link=&quot;https://nvidia.wd5.myworkdayjobs.com&quot;+ vars.get(&quot;url_&quot;+k);
+var link=&quot;https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite&quot;+ vars.get(&quot;url_&quot;+k);
 var company=vars.get(&quot;company&quot;);
 log.info(company);
 String thisJob = &apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;,&quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;,  &quot;city&quot;: &quot;&apos;+city+&apos;&quot;,&quot;company&quot;: &quot;&apos;+company+&apos;&quot;, &quot;country&quot;: &quot;Romania&quot;}&apos;;

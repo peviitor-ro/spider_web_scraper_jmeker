@@ -20,7 +20,7 @@
     <hashTree>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Test Fragment" enabled="false"/>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="clean" enabled="false">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="clean" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">true</boolProp>
         </TransactionController>
@@ -72,7 +72,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="jobList" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="jobList" enabled="false">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">true</boolProp>
         </TransactionController>

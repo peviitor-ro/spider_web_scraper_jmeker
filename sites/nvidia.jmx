@@ -202,6 +202,43 @@
                 <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
               </JMESPathExtractor>
               <hashTree/>
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="city" enabled="true">
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="script">// Parse the JSON response (assuming it&apos;s stored in a variable called &apos;response&apos;)
+import groovy.json.JsonSlurper
+
+def response = prev.getResponseDataAsString() // Replace &apos;response&apos; with your actual JSON variable name
+def json = new JsonSlurper().parseText(response)
+
+// Initialize a counter for cities
+def counter = 1
+
+// Loop through each job posting
+json.jobPostings.each { job -&gt;
+    def locationsText = job.locationsText // Get the locationsText field
+    def city = &quot;Remote&quot; // Default value if no specific city is found
+
+    // Check if &apos;Romania&apos; is mentioned in the location
+    if (locationsText.contains(&quot;Romania&quot;)) {
+        def matcher = (locationsText =~ /Romania,\s*(\w+)/) // Regex to capture the city after &quot;Romania, &quot;
+        if (matcher.find()) {
+            city = matcher.group(1) // Extract the city (e.g., &quot;Iasi&quot;)
+        }
+    }
+
+    // Store the city in a variable like &apos;city_1&apos;, &apos;city_2&apos;, etc.
+    vars.put(&quot;city_${counter}&quot;, city)
+    counter++
+}
+
+// Store the total number of cities extracted for reference
+vars.put(&quot;city_count&quot;, (counter - 1).toString())
+</stringProp>
+                <stringProp name="scriptLanguage">groovy</stringProp>
+              </JSR223PostProcessor>
+              <hashTree/>
             </hashTree>
             <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
               <boolProp name="displayJMeterProperties">false</boolProp>
@@ -280,11 +317,12 @@
                 <stringProp name="script">var k=vars.get(&quot;k&quot;);
 log.info(k.toString());
 var title=vars.get(&quot;jobs_&quot; + k);
+var city=vars.get(&quot;city_&quot;+k);
 log.info(title);
 var link=&quot;https://nvidia.wd5.myworkdayjobs.com&quot;+ vars.get(&quot;url_&quot;+k);
 var company=vars.get(&quot;company&quot;);
 log.info(company);
-String thisJob = &apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;,&quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;, &quot;country&quot;: &quot;Romania&quot;}&apos;;
+String thisJob = &apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;,&quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;,  &quot;city&quot;: &quot;&apos;+city+&apos;&quot;,&quot;company&quot;: &quot;&apos;+company+&apos;&quot;, &quot;country&quot;: &quot;Romania&quot;}&apos;;
 log.info(thisJob);
 var nvidiaJobList=vars.getObject(&quot;jobList&quot;);
 nvidiaJobList = nvidiaJobList + thisJob;

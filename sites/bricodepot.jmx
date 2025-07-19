@@ -27,6 +27,8 @@
           </elementProp>
         </collectionProp>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="scraper">
@@ -86,12 +88,12 @@
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ====" enabled="true"/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP CookieManager">
+            <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP CookieManager" enabled="true">
               <collectionProp name="CookieManager.cookies">
                 <elementProp name="user_cookies_preferences" elementType="Cookie" testname="user_cookies_preferences">
                   <stringProp name="Cookie.value">eyJpdiI6InpZRnNOS0JTZS9PdUNPSmdvc01HeFE9PSIsInZhbHVlIjoiSExxMnpOMTZNcHh6R2M5blQwL1dTNlF1cC9TTVFtNE5aTjVEbzRDb05ZN1ArT3ZkQkZOL3o4VkRIN3ZQbUlhU3ZzOVE1dEpSd3RvUjBuZFZOYzNFNGNTSklQMW5VWW1XUnRDaHpwNHhrNXBzc0daTVdvd28xckV1T2tuNTZMV2ZWeHdPVXVjOTdTdm1mYlh6NnhyYzhobXZuUmszQXFwWmJMNUc5RXViWVFSa1NxY0FZN3h6dndRMXZRMmZNOCtqV3pqWDhHT1dkUUlDWnMzcU1NWkRVYzliK0NqRzh1Q1ZEWE1PMDBvUWRUTkYyci9hRVRRWFk2bkl5azcxb2dyUFpKNzVEQVh1eTE4VTlVVTBDYW51cmQ0dHJHOUNqUzQyS2FZKzVmc0FBdjlxdlVETjhsN21rUmM4YUR3L1MxRHl0Z1RNcUFWM29jRThIdk5EeEdEdkdsOUdNendQaXFxWDI3dWg5M2R3ZmxXZDVxR241ellBUGh4U24rNUd6VnlPbjNnbmREbFZaQ0tXb2Q5MUhMSGRtNUY1UUtBa2ZrS0k1WEdkOFpIZE82N3g4VWdxZVVqU1IvZnZWWndQYUhYQlR6Y1lscmt3WHJ5RmhpZjdBMlFSQ0piOW12UW9IWDlGNm02OG40bUh2UFVuT0xSaGkzdWJUdzFlMm9JY2ZVM09PRXpUWTV2cm1xYkVzdExRckJIT3NFSkRvdXlITTZYZXpPRkljaEFNMitUV1huUUY5UjZUQUpLaFJtMU9GaCtwZ210aVdZTXlDK0ZKRDlhdmZscEVQM044VTNXdjFIRy9CSnV0U2dHeUs2ZGk5S3ErN2VWNG9zYm40bTVHdFVleWRKSEc4cXROOVdSbWExZUdqbnFyVm9UL3k5QTN2Sk41UzhoL1dZcitGRHppWGFvV1lvb1NxbFNnUExWS0s3V1giLCJtYWMiOiI2OTA0MzQ3MjljZWM5Mzk0NWRjZWJjOTQ5NzEyMmE3ODQxMTY2ZTFlZDBlYzZlNTIzMDA0N2E3NmEwMzg2ZTVlIn0%3D</stringProp>
@@ -135,7 +137,7 @@
               <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
             </CookieManager>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/cariere/joburi-disponibile/">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/cariere/joburi-disponibile/" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-07-19T19:45:54.569627</stringProp>
               <stringProp name="HTTPSampler.domain">brico.bricodepot.ro</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -150,7 +152,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -208,7 +210,7 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-07-19T19:45:54.569983</stringProp>
               </HeaderManager>
               <hashTree/>
-              <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="jobs">
+              <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="jobs" enabled="true">
                 <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
                 <stringProp name="BoundaryExtractor.refname">jobs</stringProp>
                 <stringProp name="BoundaryExtractor.lboundary"> &lt;div class=&quot;job_name&quot;&gt;</stringProp>
@@ -218,7 +220,7 @@
                 <stringProp name="BoundaryExtractor.match_number">-1</stringProp>
               </BoundaryExtractor>
               <hashTree/>
-              <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="links">
+              <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="links" enabled="true">
                 <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
                 <stringProp name="BoundaryExtractor.refname">links</stringProp>
                 <stringProp name="BoundaryExtractor.lboundary">&lt;div class=&quot;bt_aplica&quot;&gt;&lt;a href=&quot;</stringProp>
@@ -228,7 +230,7 @@
                 <stringProp name="BoundaryExtractor.match_number">-1</stringProp>
               </BoundaryExtractor>
               <hashTree/>
-              <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="cities">
+              <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="cities" enabled="true">
                 <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
                 <stringProp name="BoundaryExtractor.refname">cities</stringProp>
                 <stringProp name="BoundaryExtractor.lboundary">&lt;div class=&quot;job_location&quot;&gt;&lt;span&gt;Locatie:&lt;/span&gt;</stringProp>
@@ -240,7 +242,7 @@
               <hashTree/>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -278,7 +280,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true"/>
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
@@ -305,33 +307,30 @@
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
-                <stringProp name="script">
+                <stringProp name="script">import groovy.json.JsonOutput
 
 def city = &quot; &quot; // default city
 var k = vars.get(&quot;k&quot;);
 var country = vars.get(&quot;country&quot;);
 
 
-var title = vars.get(&quot;title_&quot; + k);
+var title = vars.get(&quot;job&quot;);
 var link  = vars.get(&quot;links_&quot; + k);
-
-// Preluăm stringul din variabila JMeter
+// Preluăm stringul cu orașe din variabilă JMeter
 def citiesString = vars.get(&quot;cities&quot;)
+// Împărțim în array după virgulă și spații
+def citiesArray = citiesString ? citiesString.split(/\s*,\s*/) : []
 
-// Împărțim stringul în array, după virgulă și eventuale spații
-def citiesArray = citiesString.split(/\s*,\s*/)
-
-// Optional: afișăm în log pentru verificare
 log.info(&quot;Orașele extrase: &quot; + citiesArray)
 
-
+log.info(&quot;Orașele extrase: &quot; + JsonOutput.toJson(citiesArray))
 
 
 var remote = vars.get(&quot;remote&quot;);
 
 
 var company = vars.get(&quot;company&quot;);
-String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;, &quot;remote&quot;: &quot;&apos;+remote+&apos;&quot;, &quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,  &quot;city&quot;: &quot;&apos;+citiesArray+&apos;&quot;, &quot;country&quot;: &quot;&apos;+country+&apos;&quot; }&apos;;
+String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;, &quot;remote&quot;: &quot;&apos;+remote+&apos;&quot;, &quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,  &quot;city&quot;: &apos;+JsonOutput.toJson(citiesArray)+&apos;, &quot;country&quot;: &quot;&apos;+country+&apos;&quot; }&apos;;
 var joblist = vars.getObject(&quot;jobList&quot;);
 joblist = joblist + job;
 vars.putObject(&quot;jobList&quot;, joblist);
@@ -341,7 +340,7 @@ vars.putObject(&quot;jobList&quot;, joblist);
               <hashTree/>
             </hashTree>
           </hashTree>
-          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler">
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
             <boolProp name="displayJMeterProperties">false</boolProp>
             <boolProp name="displayJMeterVariables">true</boolProp>
             <boolProp name="displaySystemProperties">false</boolProp>
@@ -385,9 +384,9 @@ vars.putObject(&quot;jobList&quot;, joblist);
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ====" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ===="/>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx" enabled="true">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx">
             <stringProp name="IncludeController.includepath">fw/push.jmx</stringProp>
           </IncludeController>
           <hashTree/>

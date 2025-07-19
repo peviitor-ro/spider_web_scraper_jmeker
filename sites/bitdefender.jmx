@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="bitdefender" enabled="true">
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
@@ -38,18 +38,15 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="scraper" enabled="true">
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="scraper">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
       </ThreadGroup>
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true"/>
@@ -58,7 +55,7 @@
             <stringProp name="IncludeController.includepath">fw/clean.jmx</stringProp>
           </IncludeController>
           <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -96,75 +93,75 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ====" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ===="/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract" enabled="true">
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract">
             <boolProp name="TransactionController.parent">true</boolProp>
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/apply/jobs/" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                <collectionProp name="Arguments.arguments"/>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain">bitdefender.applytojob.com</stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="eu-fra.api.csod.com/rec-job-search/external/jobs">
+              <stringProp name="TestPlan.comments">Created from cURL on 2025-07-19T15:35:44.574035</stringProp>
+              <stringProp name="HTTPSampler.domain">eu-fra.api.csod.com</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/apply/jobs/</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <stringProp name="HTTPSampler.path">/rec-job-search/external/jobs</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;careerSiteId&quot;:1,&quot;careerSitePageId&quot;:1,&quot;pageNumber&quot;:1,&quot;pageSize&quot;:25,&quot;cultureId&quot;:1,&quot;searchText&quot;:&quot;&quot;,&quot;cultureName&quot;:&quot;en-US&quot;,&quot;states&quot;:[],&quot;countryCodes&quot;:[&quot;ro&quot;],&quot;cities&quot;:[],&quot;placeID&quot;:&quot;&quot;,&quot;radius&quot;:null,&quot;postingsWithinDays&quot;:null,&quot;customFieldCheckboxKeys&quot;:[],&quot;customFieldDropdowns&quot;:[],&quot;customFieldRadios&quot;:[]}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="TestPlan.comments">Created from cURL on 2023-01-27T10:46:25.2694465</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
                 <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Accept" elementType="Header">
-                    <stringProp name="Header.name">Accept</stringProp>
-                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</stringProp>
+                  <elementProp name="accept" elementType="Header">
+                    <stringProp name="Header.name">accept</stringProp>
+                    <stringProp name="Header.value">application/json; q=1.0, text/*; q=0.8, */*; q=0.1</stringProp>
                   </elementProp>
-                  <elementProp name="Accept-Language" elementType="Header">
-                    <stringProp name="Header.name">Accept-Language</stringProp>
+                  <elementProp name="accept-language" elementType="Header">
+                    <stringProp name="Header.name">accept-language</stringProp>
                     <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
                   </elementProp>
-                  <elementProp name="Referer" elementType="Header">
-                    <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://www.bitdefender.ro/company/job-opportunities/</stringProp>
+                  <elementProp name="authorization" elementType="Header">
+                    <stringProp name="Header.name">authorization</stringProp>
+                    <stringProp name="Header.value">Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImNsaWQiOiJrdGJ3eTE0NTg0am0ifQ.eyJjY2lkIjoidGxpa25lbWVmbGV3aWtwIiwic3ViIjotMTAwLCJhdWQiOiJxcWQ1ejVsdW9tcHlnZHVuZTQ0MjVtbmEiLCJjb3JwIjoiYml0ZGVmZW5kZXIiLCJjdWlkIjoxLCJ0emlkIjoxLCJuYmQiOiIyMDI1MDcxOTEyMzIyMDQ2NyIsImV4cCI6IjIwMjUwNzE5MTMzMzIwNDY3IiwiaWF0IjoiMjAyNTA3MTkxMjMyMjA0NjciLCJydXJscyI6InJlYy1za2lsbHMtaW50ZWdyYXRpb24tYXBpL3YxL3VzZXItc2tpbGxzO3JlYy1za2lsbHMtaW50ZWdyYXRpb24tYXBpL3YxL3N1Z2dlc3RlZC1za2lsbHM7cmVjLXNraWxscy1pbnRlZ3JhdGlvbi1hcGkvdjEvdXNlcnM7cGVyZi1jYXBhYmlsaXR5LWFwaS92MS9ncmFwaHFsO3JlYy1za2lsbHMtaW50ZWdyYXRpb24tYXBpL3YxL2pvYi1yZWNvbW1lbmRhdGlvbnMvYnktdXNlcjtyZWMtam9iLXNlYXJjaC91dGlsaXR5L291bG9jYXRpb25zO3NlcnZpY2VzL2FwaS9hdHMvT2ZmZXJMZXR0ZXI7c2VydmljZXMveC9zZXNzaW9uL3YxL3Nlc3Npb24vcmVmcmVzaDtTZXJ2aWNlcy9BUEkvQVRTL0NhcmVlclNpdGU7c2VydmljZXMvYXBpL3BsYXllci90b2tlbjtyZWMtYXBwLXdvcmtmbG93LXRhZ3MtcmVzb2x2ZXIvdjEvVGhhbmtZb3U7cmVjLXJlZmVycmFsLWFwaS9yZWZlcnJhbHMvdmFsaWRhdGU7cmVjLWpvYi1hbGVydHMvdjEvam9iLWFsZXJ0cy9leHRlcm5hbDtyZWMtam9iLXNlYXJjaC9leHRlcm5hbDtzZXJ2aWNlcy9hcGkvYXRzL2FwcGxpY2F0aW9ud29ya2Zsb3c7c2VydmljZXMvYXBpL2F0cy9hcHBseWFzZ3Vlc3QvdmFsaWRhdGVhbm9ueW1vdXNlbWFpbDtzZXJ2aWNlcy9hcGkvYXRzL2FwcGx5d2l0aGludGVncmF0aW9uL2dldGF1dGh1cmw7c2VydmljZXMvYXBpL2F0cy9jYXJlZXJjZW50ZXI7c2VydmljZXMvYXBpL2F0cy9yZXN1bWUvbWFwZGF0YTtzZXJ2aWNlcy9hcGkvYXRzL3Jlc3VtZS9wYXJzZXJlc3VtZWRvY3VtZW50O3NlcnZpY2VzL2FwaS9vcmd1bml0O3NlcnZpY2VzL3gvYXBwbGljYXRpb247c2VydmljZXMveC9hdHMtY2FuZGlkYXRlLWFwaTtzZXJ2aWNlcy94L2NhcmVlci1zaXRlO3NlcnZpY2VzL3gvY29yZS1jdXN0b21maWVsZHMtc2VydmljZS92MS9jdXN0b21maWVsZHM7c2VydmljZXMveC9jb3JlLWxvZ2dpbmctc2VydmljZS1hcGk7c2VydmljZXMveC9jb3Jwc2V0dGluZ3MvdjEvY29ycHNldHRpbmdzO3NlcnZpY2VzL3gvZXh0ZXJuYWwtYXBwbGljYXRpb24vdjEvam9iLWFwcGxpY2F0aW9uL2NhY2hlO3NlcnZpY2VzL3gvam9iLXJlcXVpc2l0aW9uL3YyL3JlcXVpc2l0aW9ucztzZXJ2aWNlcy94L2xvY2FsaXphdGlvbi92MS9sb2NhbGl6YXRpb25zL3VpIn0.15YSudPdbA0WdjU_QwSOtYGbm8RjTJl5Hpzy7mBO-H60rFHiCSxoJ4CwnZV_6hzxTPS7W71iid054EfxK0ckEw</stringProp>
                   </elementProp>
-                  <elementProp name="Sec-Fetch-Dest" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
-                    <stringProp name="Header.value">iframe</stringProp>
+                  <elementProp name="cache-control" elementType="Header">
+                    <stringProp name="Header.name">cache-control</stringProp>
+                    <stringProp name="Header.value">no-cache</stringProp>
                   </elementProp>
-                  <elementProp name="Sec-Fetch-Mode" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
-                    <stringProp name="Header.value">navigate</stringProp>
+                  <elementProp name="content-type" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
                   </elementProp>
-                  <elementProp name="Sec-Fetch-Site" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
-                    <stringProp name="Header.value">cross-site</stringProp>
+                  <elementProp name="csod-accept-language" elementType="Header">
+                    <stringProp name="Header.name">csod-accept-language</stringProp>
+                    <stringProp name="Header.value">en-US</stringProp>
                   </elementProp>
-                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
-                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
-                    <stringProp name="Header.value">1</stringProp>
+                  <elementProp name="origin" elementType="Header">
+                    <stringProp name="Header.name">origin</stringProp>
+                    <stringProp name="Header.value">https://bitdefender.csod.com</stringProp>
                   </elementProp>
-                  <elementProp name="User-Agent" elementType="Header">
-                    <stringProp name="Header.name">User-Agent</stringProp>
-                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36</stringProp>
+                  <elementProp name="priority" elementType="Header">
+                    <stringProp name="Header.name">priority</stringProp>
+                    <stringProp name="Header.value">u=1, i</stringProp>
                   </elementProp>
-                  <elementProp name="dnt" elementType="Header">
-                    <stringProp name="Header.name">dnt</stringProp>
-                    <stringProp name="Header.value">1</stringProp>
+                  <elementProp name="referer" elementType="Header">
+                    <stringProp name="Header.name">referer</stringProp>
+                    <stringProp name="Header.value">https://bitdefender.csod.com/</stringProp>
                   </elementProp>
                   <elementProp name="sec-ch-ua" elementType="Header">
                     <stringProp name="Header.name">sec-ch-ua</stringProp>
-                    <stringProp name="Header.value">^\^Not_A</stringProp>
+                    <stringProp name="Header.value">&quot;Not)A;Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;138&quot;, &quot;Google Chrome&quot;;v=&quot;138&quot;</stringProp>
                   </elementProp>
                   <elementProp name="sec-ch-ua-mobile" elementType="Header">
                     <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
@@ -172,50 +169,49 @@
                   </elementProp>
                   <elementProp name="sec-ch-ua-platform" elementType="Header">
                     <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
-                    <stringProp name="Header.value">^\^Windows^\^</stringProp>
+                    <stringProp name="Header.value">&quot;Linux&quot;</stringProp>
                   </elementProp>
-                  <elementProp name="sec-gpc" elementType="Header">
-                    <stringProp name="Header.name">sec-gpc</stringProp>
-                    <stringProp name="Header.value">1</stringProp>
+                  <elementProp name="sec-fetch-dest" elementType="Header">
+                    <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                    <stringProp name="Header.value">empty</stringProp>
                   </elementProp>
-                  <elementProp name="Accept-Encoding" elementType="Header">
-                    <stringProp name="Header.name">Accept-Encoding</stringProp>
-                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  <elementProp name="sec-fetch-mode" elementType="Header">
+                    <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                    <stringProp name="Header.value">cors</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-fetch-site" elementType="Header">
+                    <stringProp name="Header.name">sec-fetch-site</stringProp>
+                    <stringProp name="Header.value">same-site</stringProp>
+                  </elementProp>
+                  <elementProp name="user-agent" elementType="Header">
+                    <stringProp name="Header.name">user-agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36</stringProp>
                   </elementProp>
                 </collectionProp>
-                <stringProp name="TestPlan.comments">Created from cURL on 2023-01-27T10:46:25.2694465</stringProp>
+                <stringProp name="TestPlan.comments">Created from cURL on 2025-07-19T15:35:44.574334</stringProp>
               </HeaderManager>
               <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="titles" enabled="true">
-                <stringProp name="RegexExtractor.refname">titles</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a class=&quot;job_title_link&quot;\s*href=&quot;\/apply\/jobs\/details\/(.+?)\?&amp;&quot;&gt;(.+?)&lt;\/a&gt;\s*&lt;br\s*\/&gt;(.+?)\s*&lt;\/td&gt;\s*&lt;td&gt;\s*(.+?)\s*&lt;\/td&gt;</stringProp>
-                <stringProp name="RegexExtractor.template">$2$</stringProp>
-                <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-              </RegexExtractor>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="title">
+                <stringProp name="JMESExtractor.referenceName">title</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">data.requisitions[*].displayJobTitle</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+              </JMESPathExtractor>
               <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="cities" enabled="true">
-                <stringProp name="RegexExtractor.refname">cities</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a class=&quot;job_title_link&quot;\s*href=&quot;\/apply\/jobs\/details\/(.+?)\?&amp;&quot;&gt;(.+?)&lt;\/a&gt;\s*&lt;br\s*\/&gt;(.+?)\s*&lt;\/td&gt;\s*&lt;td&gt;\s*(.+?)\s*&lt;\/td&gt;</stringProp>
-                <stringProp name="RegexExtractor.template">$4$</stringProp>
-                <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-              </RegexExtractor>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="id">
+                <stringProp name="JMESExtractor.referenceName">id</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">data.requisitions[*].requisitionId</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+              </JMESPathExtractor>
               <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="ids" enabled="true">
-                <stringProp name="RegexExtractor.refname">ids</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a class=&quot;job_title_link&quot;\s*href=&quot;\/apply\/jobs\/details\/(.+?)\?&amp;&quot;&gt;(.+?)&lt;\/a&gt;\s*&lt;br\s*\/&gt;(.+?)\s*&lt;\/td&gt;\s*&lt;td&gt;\s*(.+?)\s*&lt;\/td&gt;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-              </RegexExtractor>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="locations">
+                <stringProp name="JMESExtractor.referenceName">locations</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">data.requisitions[*].locations</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+              </JMESPathExtractor>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -253,21 +249,21 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ===="/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform" enabled="true">
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform">
             <boolProp name="TransactionController.parent">true</boolProp>
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
-              <stringProp name="ForeachController.inputVal">titles</stringProp>
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
+              <stringProp name="ForeachController.inputVal">title</stringProp>
               <stringProp name="ForeachController.returnVal">job</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
               <stringProp name="ForeachController.startIndex">0</stringProp>
             </ForeachController>
             <hashTree>
-              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
                 <stringProp name="CounterConfig.start">1</stringProp>
                 <stringProp name="CounterConfig.end"></stringProp>
                 <stringProp name="CounterConfig.incr">1</stringProp>
@@ -276,50 +272,46 @@
                 <boolProp name="CounterConfig.per_user">false</boolProp>
               </CounterConfig>
               <hashTree/>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="id" enabled="true">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="id">
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="parameters"></stringProp>
-                <stringProp name="script">var k = vars.get(&quot;k&quot;);
+                <stringProp name="script">import groovy.json.JsonSlurper
 
-var title = vars.get(&quot;titles_&quot; + k);
+def city = &quot; &quot; // default city
+var k = vars.get(&quot;k&quot;);
+def cityJsonString = vars.get(&quot;locations_&quot; + k);
 
-var id = vars.get(&quot;ids_&quot; + k);
-var link =&quot;https://bitdefender.applytojob.com/apply/jobs/details/&quot;+id+&quot;?&amp;&quot;;
+var title = vars.get(&quot;title_&quot; + k);
 
-var city = vars.get(&quot;cities_&quot; + k);
-city = city.replaceAll(&apos;Timisoara&apos;, &apos;Timișoara&apos;);
-city = city.replaceAll(&apos;Timisoara, Timisoara, Romania&apos;, &apos;Timișoara, Romania&apos;);
-city = city.replaceAll(&apos;Bucharest&apos;, &apos;București&apos;);
-city = city.replaceAll(&apos;București, București, Romania&apos;, &apos;București, Romania&apos;);
-city = city.replaceAll(&apos;Bucharest, Bucharest, Romania&apos;, &apos;București, Romania&apos;);
-city = city.replaceAll(&apos;București, Non-US/Other, Romania&apos;, &apos;București, Romania&apos;);
-city = city.replaceAll(&apos;Cluj-Napoca, Cluj, Romania&apos;, &apos;Cluj-Napoca, Romania&apos;);
-city = city.replaceAll(&apos;Romania&apos;, &apos;România&apos;);
-city = city.replaceAll(&apos;France&apos;, &apos;Franța&apos;);
-city = city.replaceAll(&apos;Germany&apos;, &apos;Germania&apos;);
+var id = vars.get(&quot;id_&quot; + k);
+var link =&quot;https://bitdefender.csod.com/ux/ats/careersite/1/home/requisition/&quot;+id+&quot;?c=bitdefender&quot;;
 
-if(city == &apos;România&apos;){
-	city = &apos;Remote&apos;; 
-}
+if (cityJsonString) {
+    def parser = new JsonSlurper();
+    try {
+        def cityArray = parser.parseText(cityJsonString);
+        if (cityArray instanceof List &amp;&amp; cityArray.size() &gt; 0) {
+            def firstObj = cityArray[0];
+            if (firstObj.containsKey(&quot;city&quot;)) {
+                city = firstObj.city ?: &quot; &quot;; // if city key exists but value is null, default to space
+            }
+        }
+    } catch (Exception e) {
+        // in case JSON parsing fails, city stays as &quot; &quot;
+        log.warn(&quot;Failed to parse city JSON: &quot; + e.message);
+    }
+} 
+
+
 //log.info(city);
 
 var remote = vars.get(&quot;remote&quot;);
-var country = vars.get(&quot;country&quot;);
-if(city.contains(&apos;Remote&apos;)== true){
-	city = city.replaceAll(&apos;Remote&apos;,&apos;&apos;);
-	}else{
-		remote = &apos;&apos;;}	
+var country = &quot;Romania&quot;;
 
-//log.info(city);
-var cityAndCountry = city.split(&apos;,&apos;);
-if (city == &apos;&apos;){
-	country = &apos;România&apos;;
-	}else{
-		country = cityAndCountry[cityAndCountry.length-1]}
 
 var company = vars.get(&quot;company&quot;);
-String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;, &quot;remote&quot;: &quot;&apos;+remote+&apos;&quot;, &quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,  &quot;city&quot;: &quot;&apos;+cityAndCountry[0]+&apos;&quot;, &quot;country&quot;: &quot;&apos;+country+&apos;&quot; }&apos;;
+String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;, &quot;remote&quot;: &quot;&apos;+remote+&apos;&quot;, &quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,  &quot;city&quot;: &quot;&apos;+city+&apos;&quot;, &quot;country&quot;: &quot;&apos;+country+&apos;&quot; }&apos;;
 var joblist = vars.getObject(&quot;jobList&quot;);
 joblist = joblist + job;
 vars.putObject(&quot;jobList&quot;, joblist);
@@ -329,7 +321,7 @@ vars.putObject(&quot;jobList&quot;, joblist);
               <hashTree/>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -367,14 +359,280 @@ vars.putObject(&quot;jobList&quot;, joblist);
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ====" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ===="/>
+        <hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract">
+            <boolProp name="TransactionController.parent">true</boolProp>
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="eu-fra.api.csod.com/rec-job-search/external/jobs">
+              <stringProp name="TestPlan.comments">Created from cURL on 2025-07-19T15:35:44.574035</stringProp>
+              <stringProp name="HTTPSampler.domain">eu-fra.api.csod.com</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/rec-job-search/external/jobs</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;careerSiteId&quot;:1,&quot;careerSitePageId&quot;:1,&quot;pageNumber&quot;:2,&quot;pageSize&quot;:25,&quot;cultureId&quot;:1,&quot;searchText&quot;:&quot;&quot;,&quot;cultureName&quot;:&quot;en-US&quot;,&quot;states&quot;:[],&quot;countryCodes&quot;:[&quot;ro&quot;],&quot;cities&quot;:[],&quot;placeID&quot;:&quot;&quot;,&quot;radius&quot;:null,&quot;postingsWithinDays&quot;:null,&quot;customFieldCheckboxKeys&quot;:[],&quot;customFieldDropdowns&quot;:[],&quot;customFieldRadios&quot;:[]}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="accept" elementType="Header">
+                    <stringProp name="Header.name">accept</stringProp>
+                    <stringProp name="Header.value">application/json; q=1.0, text/*; q=0.8, */*; q=0.1</stringProp>
+                  </elementProp>
+                  <elementProp name="accept-language" elementType="Header">
+                    <stringProp name="Header.name">accept-language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="authorization" elementType="Header">
+                    <stringProp name="Header.name">authorization</stringProp>
+                    <stringProp name="Header.value">Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImNsaWQiOiJrdGJ3eTE0NTg0am0ifQ.eyJjY2lkIjoidGxpa25lbWVmbGV3aWtwIiwic3ViIjotMTAwLCJhdWQiOiJxcWQ1ejVsdW9tcHlnZHVuZTQ0MjVtbmEiLCJjb3JwIjoiYml0ZGVmZW5kZXIiLCJjdWlkIjoxLCJ0emlkIjoxLCJuYmQiOiIyMDI1MDcxOTEyMzIyMDQ2NyIsImV4cCI6IjIwMjUwNzE5MTMzMzIwNDY3IiwiaWF0IjoiMjAyNTA3MTkxMjMyMjA0NjciLCJydXJscyI6InJlYy1za2lsbHMtaW50ZWdyYXRpb24tYXBpL3YxL3VzZXItc2tpbGxzO3JlYy1za2lsbHMtaW50ZWdyYXRpb24tYXBpL3YxL3N1Z2dlc3RlZC1za2lsbHM7cmVjLXNraWxscy1pbnRlZ3JhdGlvbi1hcGkvdjEvdXNlcnM7cGVyZi1jYXBhYmlsaXR5LWFwaS92MS9ncmFwaHFsO3JlYy1za2lsbHMtaW50ZWdyYXRpb24tYXBpL3YxL2pvYi1yZWNvbW1lbmRhdGlvbnMvYnktdXNlcjtyZWMtam9iLXNlYXJjaC91dGlsaXR5L291bG9jYXRpb25zO3NlcnZpY2VzL2FwaS9hdHMvT2ZmZXJMZXR0ZXI7c2VydmljZXMveC9zZXNzaW9uL3YxL3Nlc3Npb24vcmVmcmVzaDtTZXJ2aWNlcy9BUEkvQVRTL0NhcmVlclNpdGU7c2VydmljZXMvYXBpL3BsYXllci90b2tlbjtyZWMtYXBwLXdvcmtmbG93LXRhZ3MtcmVzb2x2ZXIvdjEvVGhhbmtZb3U7cmVjLXJlZmVycmFsLWFwaS9yZWZlcnJhbHMvdmFsaWRhdGU7cmVjLWpvYi1hbGVydHMvdjEvam9iLWFsZXJ0cy9leHRlcm5hbDtyZWMtam9iLXNlYXJjaC9leHRlcm5hbDtzZXJ2aWNlcy9hcGkvYXRzL2FwcGxpY2F0aW9ud29ya2Zsb3c7c2VydmljZXMvYXBpL2F0cy9hcHBseWFzZ3Vlc3QvdmFsaWRhdGVhbm9ueW1vdXNlbWFpbDtzZXJ2aWNlcy9hcGkvYXRzL2FwcGx5d2l0aGludGVncmF0aW9uL2dldGF1dGh1cmw7c2VydmljZXMvYXBpL2F0cy9jYXJlZXJjZW50ZXI7c2VydmljZXMvYXBpL2F0cy9yZXN1bWUvbWFwZGF0YTtzZXJ2aWNlcy9hcGkvYXRzL3Jlc3VtZS9wYXJzZXJlc3VtZWRvY3VtZW50O3NlcnZpY2VzL2FwaS9vcmd1bml0O3NlcnZpY2VzL3gvYXBwbGljYXRpb247c2VydmljZXMveC9hdHMtY2FuZGlkYXRlLWFwaTtzZXJ2aWNlcy94L2NhcmVlci1zaXRlO3NlcnZpY2VzL3gvY29yZS1jdXN0b21maWVsZHMtc2VydmljZS92MS9jdXN0b21maWVsZHM7c2VydmljZXMveC9jb3JlLWxvZ2dpbmctc2VydmljZS1hcGk7c2VydmljZXMveC9jb3Jwc2V0dGluZ3MvdjEvY29ycHNldHRpbmdzO3NlcnZpY2VzL3gvZXh0ZXJuYWwtYXBwbGljYXRpb24vdjEvam9iLWFwcGxpY2F0aW9uL2NhY2hlO3NlcnZpY2VzL3gvam9iLXJlcXVpc2l0aW9uL3YyL3JlcXVpc2l0aW9ucztzZXJ2aWNlcy94L2xvY2FsaXphdGlvbi92MS9sb2NhbGl6YXRpb25zL3VpIn0.15YSudPdbA0WdjU_QwSOtYGbm8RjTJl5Hpzy7mBO-H60rFHiCSxoJ4CwnZV_6hzxTPS7W71iid054EfxK0ckEw</stringProp>
+                  </elementProp>
+                  <elementProp name="cache-control" elementType="Header">
+                    <stringProp name="Header.name">cache-control</stringProp>
+                    <stringProp name="Header.value">no-cache</stringProp>
+                  </elementProp>
+                  <elementProp name="content-type" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="csod-accept-language" elementType="Header">
+                    <stringProp name="Header.name">csod-accept-language</stringProp>
+                    <stringProp name="Header.value">en-US</stringProp>
+                  </elementProp>
+                  <elementProp name="origin" elementType="Header">
+                    <stringProp name="Header.name">origin</stringProp>
+                    <stringProp name="Header.value">https://bitdefender.csod.com</stringProp>
+                  </elementProp>
+                  <elementProp name="priority" elementType="Header">
+                    <stringProp name="Header.name">priority</stringProp>
+                    <stringProp name="Header.value">u=1, i</stringProp>
+                  </elementProp>
+                  <elementProp name="referer" elementType="Header">
+                    <stringProp name="Header.name">referer</stringProp>
+                    <stringProp name="Header.value">https://bitdefender.csod.com/</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-ch-ua" elementType="Header">
+                    <stringProp name="Header.name">sec-ch-ua</stringProp>
+                    <stringProp name="Header.value">&quot;Not)A;Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;138&quot;, &quot;Google Chrome&quot;;v=&quot;138&quot;</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                    <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                    <stringProp name="Header.value">?0</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-ch-ua-platform" elementType="Header">
+                    <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                    <stringProp name="Header.value">&quot;Linux&quot;</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-fetch-dest" elementType="Header">
+                    <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                    <stringProp name="Header.value">empty</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-fetch-mode" elementType="Header">
+                    <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                    <stringProp name="Header.value">cors</stringProp>
+                  </elementProp>
+                  <elementProp name="sec-fetch-site" elementType="Header">
+                    <stringProp name="Header.name">sec-fetch-site</stringProp>
+                    <stringProp name="Header.value">same-site</stringProp>
+                  </elementProp>
+                  <elementProp name="user-agent" elementType="Header">
+                    <stringProp name="Header.name">user-agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+                <stringProp name="TestPlan.comments">Created from cURL on 2025-07-19T15:35:44.574334</stringProp>
+              </HeaderManager>
+              <hashTree/>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="title" enabled="true">
+                <stringProp name="JMESExtractor.referenceName">title</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">data.requisitions[*].displayJobTitle</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+              </JMESPathExtractor>
+              <hashTree/>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="id" enabled="true">
+                <stringProp name="JMESExtractor.referenceName">id</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">data.requisitions[*].requisitionId</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+              </JMESPathExtractor>
+              <hashTree/>
+              <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="locations" enabled="true">
+                <stringProp name="JMESExtractor.referenceName">locations</stringProp>
+                <stringProp name="JMESExtractor.jmesPathExpr">data.requisitions[*].locations</stringProp>
+                <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+              </JMESPathExtractor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ===="/>
+        <hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform">
+            <boolProp name="TransactionController.parent">true</boolProp>
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
+              <stringProp name="ForeachController.inputVal">title</stringProp>
+              <stringProp name="ForeachController.returnVal">job</stringProp>
+              <boolProp name="ForeachController.useSeparator">true</boolProp>
+              <stringProp name="ForeachController.startIndex">0</stringProp>
+            </ForeachController>
+            <hashTree>
+              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
+                <stringProp name="CounterConfig.start">1</stringProp>
+                <stringProp name="CounterConfig.end"></stringProp>
+                <stringProp name="CounterConfig.incr">1</stringProp>
+                <stringProp name="CounterConfig.name">k</stringProp>
+                <stringProp name="CounterConfig.format"></stringProp>
+                <boolProp name="CounterConfig.per_user">false</boolProp>
+              </CounterConfig>
+              <hashTree/>
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="id">
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="script">import groovy.json.JsonSlurper
+
+def city = &quot; &quot; // default city
+var k = vars.get(&quot;k&quot;);
+def cityJsonString = vars.get(&quot;locations_&quot; + k);
+
+var title = vars.get(&quot;title_&quot; + k);
+
+var id = vars.get(&quot;id_&quot; + k);
+var link =&quot;https://bitdefender.csod.com/ux/ats/careersite/1/home/requisition/&quot;+id+&quot;?c=bitdefender&quot;;
+
+if (cityJsonString) {
+    def parser = new JsonSlurper();
+    try {
+        def cityArray = parser.parseText(cityJsonString);
+        if (cityArray instanceof List &amp;&amp; cityArray.size() &gt; 0) {
+            def firstObj = cityArray[0];
+            if (firstObj.containsKey(&quot;city&quot;)) {
+                city = firstObj.city ?: &quot; &quot;; // if city key exists but value is null, default to space
+            }
+        }
+    } catch (Exception e) {
+        // in case JSON parsing fails, city stays as &quot; &quot;
+        log.warn(&quot;Failed to parse city JSON: &quot; + e.message);
+    }
+} 
+
+
+//log.info(city);
+
+var remote = vars.get(&quot;remote&quot;);
+var country = &quot;Romania&quot;;
+
+
+var company = vars.get(&quot;company&quot;);
+String job=&apos;{&quot;job_title&quot;: &quot;&apos;+title+&apos;&quot;, &quot;remote&quot;: &quot;&apos;+remote+&apos;&quot;, &quot;job_link&quot;: &quot;&apos;+link+&apos;&quot;, &quot;company&quot;: &quot;&apos;+company+&apos;&quot;,  &quot;city&quot;: &quot;&apos;+city+&apos;&quot;, &quot;country&quot;: &quot;&apos;+country+&apos;&quot; }&apos;;
+var joblist = vars.getObject(&quot;jobList&quot;);
+joblist = joblist + job;
+vars.putObject(&quot;jobList&quot;, joblist);
+</stringProp>
+                <stringProp name="scriptLanguage">groovy</stringProp>
+              </JSR223Sampler>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ===="/>
         <hashTree>
           <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx" enabled="true">
             <stringProp name="IncludeController.includepath">fw/push.jmx</stringProp>
           </IncludeController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

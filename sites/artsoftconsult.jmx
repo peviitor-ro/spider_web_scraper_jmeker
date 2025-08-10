@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="artsoftconsult" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="artsoftconsult">
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
-      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
           <elementProp name="company" elementType="Argument">
             <stringProp name="Argument.name">company</stringProp>
@@ -35,26 +35,24 @@
             <stringProp name="Argument.value">${__P(apikey)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="county" elementType="Argument">
+            <stringProp name="Argument.name">county</stringProp>
+            <stringProp name="Argument.value">Cluj</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
-      <stringProp name="TestPlan.comments"></stringProp>
-      <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
       </ThreadGroup>
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true"/>
@@ -104,27 +102,19 @@
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ====" enabled="true"/>
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract" enabled="true">
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
             <boolProp name="TransactionController.parent">true</boolProp>
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://www.artsoft-consult.ro/careers/job-openings" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <stringProp name="HTTPSampler.path">https://www.artsoft-consult.ro/careers/job-openings</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">https://www.artsoft-consult.ro/careers/job-openings</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
@@ -134,6 +124,7 @@
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                 <stringProp name="RegexExtractor.default"></stringProp>
+                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
               </RegexExtractor>
               <hashTree/>
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
@@ -143,6 +134,7 @@
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                 <stringProp name="RegexExtractor.default"></stringProp>
+                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
               </RegexExtractor>
               <hashTree/>
             </hashTree>
@@ -151,8 +143,8 @@
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true"/>
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform" enabled="true">
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
             <boolProp name="TransactionController.parent">true</boolProp>
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
             <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
@@ -171,7 +163,7 @@
                 <boolProp name="CounterConfig.per_user">false</boolProp>
               </CounterConfig>
               <hashTree/>
-              <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="${__V(title_${k},)}" enabled="true">
+              <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="${__V(title_${k},)}">
                 <boolProp name="WAITING">false</boolProp>
                 <boolProp name="SUCCESFULL">true</boolProp>
                 <stringProp name="RESPONSE_CODE">200</stringProp>
@@ -183,7 +175,9 @@
         &quot;job_link&quot;:&quot;${__V(link_${k},)}&quot;,
         &quot;company&quot;:&quot;${company}&quot;,
         &quot;country&quot;:&quot;${country}&quot;,
-        &quot;city&quot;:&quot;${city}&quot;
+        &quot;city&quot;:&quot;${city}&quot;,
+         &quot;remote&quot;:&quot;on-site&quot;,
+          &quot;county&quot;:&quot;${county}&quot;
        
       }</stringProp>
                 <stringProp name="RESPONSE_TIME">0</stringProp>
@@ -193,7 +187,7 @@
                 <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
               </kg.apc.jmeter.samplers.DummySampler>
               <hashTree>
-                <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+                <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
                   <stringProp name="cacheKey">true</stringProp>
                   <stringProp name="filename"></stringProp>
                   <stringProp name="parameters"></stringProp>
@@ -215,8 +209,8 @@ vars.putObject(&quot;jobList&quot;,jobList);
               </hashTree>
             </hashTree>
             <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Internship" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
               <boolProp name="TransactionController.parent">true</boolProp>
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
             </TransactionController>
             <hashTree>
               <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="${__V(title_${k},)}" enabled="true">
@@ -263,7 +257,7 @@ vars.putObject(&quot;jobList&quot;,jobList);
               </hashTree>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -308,7 +302,7 @@ vars.putObject(&quot;jobList&quot;,jobList);
           </IncludeController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

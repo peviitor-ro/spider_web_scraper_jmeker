@@ -518,11 +518,11 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
               </RegexExtractor>
               <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link">
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                 <stringProp name="RegexExtractor.refname">link</stringProp>
-                <stringProp name="RegexExtractor.regex">&lt;a[^&gt;]*href=&quot;([^&quot;]*\/apply\/[^&quot;]*)&quot;[^&gt;]*&gt;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.regex">href=&quot;https:\/\/electrogrup\.applytojob\.com\/apply\/(.+?)&quot;&gt;</stringProp>
+                <stringProp name="RegexExtractor.template">https://electrogrup.applytojob.com/apply/$1$</stringProp>
                 <stringProp name="RegexExtractor.default"></stringProp>
                 <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
@@ -568,7 +568,7 @@ for (int i = 1; i &lt;= count; i++) {
               <hashTree/>
             </hashTree>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>

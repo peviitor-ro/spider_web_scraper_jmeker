@@ -30,8 +30,8 @@
             <stringProp name="Argument.value">Cluj-Napoca</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="conty" elementType="Argument">
-            <stringProp name="Argument.name">conty</stringProp>
+          <elementProp name="county" elementType="Argument">
+            <stringProp name="Argument.name">county</stringProp>
             <stringProp name="Argument.value">Cluj</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -55,7 +55,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="get TOKEN">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="get TOKEN" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -96,7 +96,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="delete">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="delete" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -353,7 +353,7 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CLEAR data from Search Engine    ====" enabled="true"/>
         <hashTree>
           <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx" enabled="true">
             <stringProp name="IncludeController.includepath">fw/clean.jmx</stringProp>
@@ -397,14 +397,14 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET open positions from WEBSITE    ====" enabled="true"/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Extract" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get page count">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get page count" enabled="true">
               <stringProp name="HTTPSampler.path">https://parapet.ro/cariera/</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -415,7 +415,7 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title">
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
                 <stringProp name="RegexExtractor.refname">title</stringProp>
                 <stringProp name="RegexExtractor.regex">&lt;span class=&quot;elementor-icon-list-text&quot;&gt;(.+?)&lt;/span&gt;</stringProp>
                 <stringProp name="RegexExtractor.template">$1$</stringProp>
@@ -428,7 +428,7 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
               <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link">
                 <stringProp name="RegexExtractor.refname">link</stringProp>
                 <stringProp name="RegexExtractor.regex">&lt;a href=&quot;https://parapet.ro/wp-content/uploads/(.+?)&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.template">https://parapet.ro/wp-content/uploads/$1$</stringProp>
                 <stringProp name="RegexExtractor.default"></stringProp>
                 <stringProp name="RegexExtractor.match_number">-1</stringProp>
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
@@ -436,14 +436,14 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
               </RegexExtractor>
               <hashTree/>
             </hashTree>
-            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler">
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
               <boolProp name="displayJMeterProperties">false</boolProp>
               <boolProp name="displayJMeterVariables">true</boolProp>
               <boolProp name="displaySystemProperties">false</boolProp>
             </DebugSampler>
             <hashTree/>
           </hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -481,21 +481,21 @@ vars.put(&quot;job_count&quot;, jobs.size().toString())
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true"/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transform" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
               <stringProp name="ForeachController.inputVal">title</stringProp>
               <stringProp name="ForeachController.returnVal">job</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
               <stringProp name="ForeachController.startIndex">0</stringProp>
             </ForeachController>
             <hashTree>
-              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter">
+              <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
                 <stringProp name="CounterConfig.start">1</stringProp>
                 <stringProp name="CounterConfig.end"></stringProp>
                 <stringProp name="CounterConfig.incr">1</stringProp>
@@ -524,7 +524,7 @@ vars.putObject(&quot;jobList&quot;, joblist);
                 <stringProp name="scriptLanguage">groovy</stringProp>
               </JSR223Sampler>
               <hashTree/>
-              <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+              <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
                 <boolProp name="ResultCollector.error_logging">false</boolProp>
                 <objProp>
                   <name>saveConfig</name>
@@ -564,14 +564,14 @@ vars.putObject(&quot;jobList&quot;, joblist);
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ===="/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   PUSH data to Search Engine  ====" enabled="true"/>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller fw/push.jmx" enabled="true">
             <stringProp name="IncludeController.includepath">fw/push.jmx</stringProp>
           </IncludeController>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="publish">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="publish" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
